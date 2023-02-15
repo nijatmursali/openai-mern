@@ -9,7 +9,6 @@ dotenv.config({
     path: path.resolve('../.env')
 });
 
-console.log(process.env.PORT);
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));

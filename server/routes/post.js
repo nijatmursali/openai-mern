@@ -10,7 +10,6 @@ dotenv.config(
     }
 );
 
-console.log(process.env.OPENAI_API);
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API,
 });
@@ -23,7 +22,6 @@ router.route('/').post(async (req, res) => {
     try {
         const { name, email, prompt } = req.body;
 
-        console.log(prompt, name, email);
         const response = await openai.createImage({
             prompt: prompt,
             n: 1,
@@ -47,7 +45,6 @@ router.route('/').post(async (req, res) => {
             image: image
         })
     } catch (error) {
-        console.log(error);
         res.status(500).send(error);
     }
 });

@@ -32,7 +32,6 @@ function App() {
       setImage(response.data.image);
       setLoading(false);
     } catch (err) {
-      console.log(err);
       setError("Make sure you did not put any 18+ stuff in text. :)");
     }
     setLoading(false);
