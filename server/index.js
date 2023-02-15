@@ -1,24 +1,29 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
+import * as path from 'path';
 import cors from 'cors';
-import { connect } from './database/connect';
-import postRouter from './routes/posts';
+import connect from './database/connect.js';
+import postRouter from './routes/post.js';
 
-dotenv.config();
+dotenv.config({
+    path: path.resolve('../.env')
+});
 
+console.log(process.env.PORT);
 const app = express();
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-app.use('/api/v1/users', postRouter);
+app.use('/api/v1/openai', postRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
 try {
-    connect(process.env.MONGO_URI);
+    connect(process.env.MONGODB_API);
 } catch (error) {
     console.log(error);
 }
